@@ -1,0 +1,16 @@
+logging:
+  level:
+    org.springframework: ERROR
+    com.ibm: DEBUG
+
+spring:
+  profiles:
+    active: dev
+
+plivoProperty:
+  authId: swara
+  authtoken: swara
+
+xlsFilesProperty:
+  empContactPath : /swara/
+  accountClaimsPath : /swara/
