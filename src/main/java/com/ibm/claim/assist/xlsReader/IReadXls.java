@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface IReadXls {
 
+    //Sngat received
     public List<EmpContact> getEmpContact();
     public List<ReadAccountClaimData> getAccountClaims();
 
