@@ -1,6 +1,7 @@
 package com.ibm.claim.assist.xlsReader.Model;
 
 public class EmpContact {
+
     private String empNo;
     private String  contactNo;
 
