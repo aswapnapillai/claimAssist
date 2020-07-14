@@ -1,5 +1,6 @@
 package com.ibm.claim.assist.xlsReader;
 
+import com.ibm.claim.assist.plivo.config.ClaimAssitProperty;
 import com.ibm.claim.assist.propertyReader.config.ClaimAssitProperty;
 import com.ibm.claim.assist.xlsReader.Model.AccountClaim;
 import com.ibm.claim.assist.xlsReader.Model.EmpContact;
@@ -19,7 +20,7 @@ public class ReadAccountClaimData extends ReadXls {
     ClaimAssitProperty propertyReader;
     List<AccountClaim> accountClaimList = new ArrayList<>();
 
-    ReadAccountClaimData() {
+    public ReadAccountClaimData() {
         createAccountClaimList();
     }
 
@@ -56,9 +57,7 @@ public class ReadAccountClaimData extends ReadXls {
                     accountClaimList.add(accountClaim);
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidFormatException e) {
+        } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
 

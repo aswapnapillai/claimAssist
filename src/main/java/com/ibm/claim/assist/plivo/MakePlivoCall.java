@@ -2,6 +2,10 @@ package com.ibm.claim.assist.plivo;
 
 
 import com.ibm.claim.assist.plivo.config.ClaimAssitProperty;
+import com.ibm.claim.assist.xlsReader.Model.AccountClaim;
+import com.ibm.claim.assist.xlsReader.Model.EmpContact;
+import com.ibm.claim.assist.xlsReader.ReadAccountClaimData;
+import com.ibm.claim.assist.xlsReader.ReadEmpContact;
 import com.plivo.api.Plivo;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.call.Call;
@@ -28,15 +32,21 @@ public class MakePlivoCall implements  CommandLineRunner{
     }
 
     private void makeCall(){
-        Plivo.init();
+        Plivo.init(propertyReader.getPlivoProperty().getAuthId(),propertyReader.getPlivoProperty().getAuthToken());
         try {
-            Call.creator("the_from_number", Collections.singletonList("the_to_number"), "https://answer.url")
-                    .answerMethod("GET")
-                    .create();
+            ReadAccountClaimData accountClaimData = new ReadAccountClaimData();
+            ReadEmpContact empContact = new ReadEmpContact();
+            accountClaimData.getAccountClaims().forEach(accountClaim ->{
+               // empContact.getEmpContact()
+                Call.creator("the_from_number", Collections.singletonList("the_to_number"), "https://answer.url")
+                        .answerMethod("GET")
+                        .create();
+            });
+
         } catch (IOException | PlivoRestException e) {
             e.printStackTrace();
         }
     }
     }
 
-}
+

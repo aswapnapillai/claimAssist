@@ -12,11 +12,11 @@ public class AccountClaim {
         this.empNo = empNo;
     }
 
-    public String getWeekNumber() {
+    public String getWeekEnding() {
         return weekNumber;
     }
 
-    public void setWeekNumber(String weekNumber) {
+    public void setWeekEnding(String weekNumber) {
         this.weekNumber = weekNumber;
     }
 }

@@ -16,7 +16,7 @@ public class ReadEmpContact extends ReadXls  {
     @Autowired
     ClaimAssitProperty propertyReader;
     List<EmpContact> empContactList = new ArrayList<>();
-    ReadEmpContact(){
+    public ReadEmpContact(){
         CreateEmpContactList();
     }
 
