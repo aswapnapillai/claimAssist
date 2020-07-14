@@ -1,7 +1,7 @@
 package com.ibm.claim.assist.xlsReader;
 
 import com.ibm.claim.assist.plivo.config.ClaimAssitProperty;
-import com.ibm.claim.assist.propertyReader.config.ClaimAssitProperty;
+import com.ibm.claim.assist.propertyReader.*;
 import com.ibm.claim.assist.xlsReader.Model.AccountClaim;
 import com.ibm.claim.assist.xlsReader.Model.EmpContact;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;

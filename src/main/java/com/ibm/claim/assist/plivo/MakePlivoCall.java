@@ -33,19 +33,21 @@ public class MakePlivoCall implements  CommandLineRunner{
 
     private void makeCall(){
         Plivo.init(propertyReader.getPlivoProperty().getAuthId(),propertyReader.getPlivoProperty().getAuthToken());
-        try {
+
             ReadAccountClaimData accountClaimData = new ReadAccountClaimData();
             ReadEmpContact empContact = new ReadEmpContact();
             accountClaimData.getAccountClaims().forEach(accountClaim ->{
+                try {
                // empContact.getEmpContact()
                 Call.creator("the_from_number", Collections.singletonList("the_to_number"), "https://answer.url")
                         .answerMethod("GET")
                         .create();
+            } catch (IOException | PlivoRestException e) {
+                e.printStackTrace();
+            }
             });
 
-        } catch (IOException | PlivoRestException e) {
-            e.printStackTrace();
-        }
+
     }
     }
 
