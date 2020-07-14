@@ -1,6 +1,6 @@
 package com.ibm.claim.assist.xlsReader;
 
-import com.ibm.claim.assist.propertyReader.config.ClaimAssitProperty;
+import com.ibm.claim.assist.plivo.config.ClaimAssitProperty;
 import com.ibm.claim.assist.xlsReader.Model.EmpContact;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -33,7 +33,7 @@ public class ReadEmpContact extends ReadXls  {
         // Create a DataFormatter to format and get each cell's value as String
         DataFormatter dataFormatter = new DataFormatter();
         try {
-            Sheet sheet = readXls("C:\\ClaimReminder\\Test", 0);
+            Sheet sheet = readXls(propertyReader.getXlsFilesProperty().getEmpContactPath(), 0);
             for (Row row : sheet) {
                 EmpContact empContact = new EmpContact();
                 if (row.getRowNum() > 0) {
@@ -51,9 +51,7 @@ public class ReadEmpContact extends ReadXls  {
                     empContactList.add(empContact);
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (InvalidFormatException e) {
+        } catch (IOException | InvalidFormatException e) {
             e.printStackTrace();
         }
 

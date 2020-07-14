@@ -1,16 +1,15 @@
 logging:
   level:
     org.springframework: ERROR
-    com.ibm: DEBUG
+    com.mkyong: DEBUG
 
 spring:
   profiles:
     active: dev
-
-plivoProperty:
-  authId: swara
-  authtoken: swara
-
-xlsFilesProperty:
-  empContactPath : /swara/
-  accountClaimsPath : /swara/
+claimsassist:
+  plivoproperty:
+    authId: swara
+    authtoken: swara
+  xlsfilesproperty:
+    empContactPath : /swara/
+    accountClaimsPath : /swara/

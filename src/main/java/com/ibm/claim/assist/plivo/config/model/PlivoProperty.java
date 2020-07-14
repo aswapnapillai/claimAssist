@@ -1,4 +1,4 @@
-package com.ibm.claim.assist.propertyReader.model;
+package com.ibm.claim.assist.plivo.config.model;
 
 public class PlivoProperty {
     String authId;
@@ -21,5 +21,13 @@ public class PlivoProperty {
 
     public void setAuthId(String authId) {
         this.authId = authId;
+    }
+
+    @Override
+    public String toString() {
+        return "PlivoProperty{" +
+                "authId='" + authId + '\'' +
+                ", authToken='" + authToken + '\'' +
+                '}';
     }
 }

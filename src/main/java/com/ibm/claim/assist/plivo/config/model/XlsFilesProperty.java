@@ -1,4 +1,4 @@
-package com.ibm.claim.assist.propertyReader.model;
+package com.ibm.claim.assist.plivo.config.model;
 
 public class XlsFilesProperty {
     String empContactPath;
@@ -18,5 +18,13 @@ public class XlsFilesProperty {
 
     public void setAccountClaimsPath(String accountClaimsPath) {
         this.accountClaimsPath = accountClaimsPath;
+    }
+
+    @Override
+    public String toString() {
+        return "XlsFilesProperty{" +
+                "empContactPath='" + empContactPath + '\'' +
+                ", accountClaimsPath='" + accountClaimsPath + '\'' +
+                '}';
     }
 }
