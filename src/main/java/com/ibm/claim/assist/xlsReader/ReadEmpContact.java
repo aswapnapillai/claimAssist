@@ -1,6 +1,7 @@
 package com.ibm.claim.assist.xlsReader;
 
 import com.ibm.claim.assist.plivo.config.ClaimAssitProperty;
+import com.ibm.claim.assist.xlsReader.Model.AccountClaim;
 import com.ibm.claim.assist.xlsReader.Model.EmpContact;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.DataFormatter;
@@ -25,7 +26,7 @@ public class ReadEmpContact extends ReadXls  {
     }
 
     @Override
-    public List<ReadAccountClaimData> getAccountClaims() {
+    public List<AccountClaim> getAccountClaims() {
         return null;
     }
 

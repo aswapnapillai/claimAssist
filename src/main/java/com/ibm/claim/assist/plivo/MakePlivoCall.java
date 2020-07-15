@@ -9,6 +9,7 @@ import com.ibm.claim.assist.xlsReader.ReadEmpContact;
 import com.plivo.api.Plivo;
 import com.plivo.api.exceptions.PlivoRestException;
 import com.plivo.api.models.call.Call;
+import com.plivo.api.models.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
 
 @SpringBootApplication
 public class MakePlivoCall implements  CommandLineRunner{
@@ -29,24 +31,29 @@ public class MakePlivoCall implements  CommandLineRunner{
 
     public void run(String... args) throws Exception {
         System.out.println("SWARA   -> "+propertyReader);
+        makeCall();
     }
 
     private void makeCall(){
         Plivo.init(propertyReader.getPlivoProperty().getAuthId(),propertyReader.getPlivoProperty().getAuthToken());
 
             ReadAccountClaimData accountClaimData = new ReadAccountClaimData();
-            ReadEmpContact empContact = new ReadEmpContact();
+            ReadEmpContact rEmpContact = new ReadEmpContact();
             accountClaimData.getAccountClaims().forEach(accountClaim ->{
-                try {
-               // empContact.getEmpContact()
-                Call.creator("the_from_number", Collections.singletonList("the_to_number"), "https://answer.url")
-                        .answerMethod("GET")
-                        .create();
-            } catch (IOException | PlivoRestException e) {
-                e.printStackTrace();
-            }
-            });
+                 rEmpContact.getEmpContact().stream().
+                         filter(empContact-> accountClaim.getEmpNo().equals(empContact.getEmpNo())).forEach(emp ->{
+                     try {
+                     Call.creator("+9108821881", Collections.singletonList(emp.getContactNo()), "https://answer.url")
+                             .answerMethod("GET")
+                             .create();
+                     Message.creator("+9108821881", Collections.singletonList(emp.getContactNo()), PlivoConstants.smsMsg.getData() + "  "+
+                             accountClaim.getWeekEnding()).create();
+                 } catch (IOException | PlivoRestException e) {
+                        e.printStackTrace();
+                    }
+                 });
 
+            });
 
     }
     }
