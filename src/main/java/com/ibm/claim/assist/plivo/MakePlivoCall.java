@@ -53,6 +53,7 @@ public class MakePlivoCall implements  CommandLineRunner{
                      Call.creator("+9108821881", Collections.singletonList(emp.getContactNo()), "https://answer.url")
                              .answerMethod("GET")
                              .create();
+
                      Message.creator("+9108821881", Collections.singletonList(emp.getContactNo()), PlivoConstants.smsMsg.getData() + "  "+
                              accountClaim.getWeekEnding()).create();
                  } catch (IOException | PlivoRestException e) {
