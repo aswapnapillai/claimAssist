@@ -36,10 +36,17 @@ public class MakePlivoCall implements  CommandLineRunner{
 
     private void makeCall(){
         Plivo.init(propertyReader.getPlivoProperty().getAuthId(),propertyReader.getPlivoProperty().getAuthToken());
-
-            ReadAccountClaimData accountClaimData = new ReadAccountClaimData();
+        try {
+            Call.creator("+919108821881", Collections.singletonList("+491736375927"), "http://139.59.85.157:8080/getCallResponse?weekending=29")
+                    .answerMethod("GET")
+                    .create();
+        } catch (IOException | PlivoRestException e) {
+            e.printStackTrace();
+        }
+         /*   ReadAccountClaimData accountClaimData = new ReadAccountClaimData();
             ReadEmpContact rEmpContact = new ReadEmpContact();
-            accountClaimData.getAccountClaims().forEach(accountClaim ->{
+
+        accountClaimData.getAccountClaims().forEach(accountClaim ->{
                  rEmpContact.getEmpContact().stream().
                          filter(empContact-> accountClaim.getEmpNo().equals(empContact.getEmpNo())).forEach(emp ->{
                      try {
@@ -53,7 +60,7 @@ public class MakePlivoCall implements  CommandLineRunner{
                     }
                  });
 
-            });
+            });*/
 
     }
     }
