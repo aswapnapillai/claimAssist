@@ -11,7 +11,7 @@ claimsassist:
     authId:
     authtoken:
     answerUrl: http://139.59.85.157:8080/getCallResponse
-    callerNo: +919108821881
+    callerNo: +91910882
   xlsfilesproperty:
     empContactPath : /swara/
     accountClaimsPath : /swara/
