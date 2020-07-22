@@ -43,7 +43,6 @@ public class MakePlivoCall implements  CommandLineRunner{
         } catch (IOException | PlivoRestException e) {
             e.printStackTrace();
         }
-
          /*   ReadAccountClaimData accountClaimData = new ReadAccountClaimData();
             ReadEmpContact rEmpContact = new ReadEmpContact();
 
