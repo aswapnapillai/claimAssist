@@ -51,7 +51,7 @@ public class MakePlivoCall implements  CommandLineRunner{
                          filter(empContact-> accountClaim.getEmpNo().equals(empContact.getEmpNo())).forEach(emp ->{
                      try {
                      Call.creator("+9108821881", Collections.singletonList(emp.getContactNo()), "https://answer.url")
-                             .answerMethod("GET")
+                              .answerMethod("GET")
                              .create();
 
                      Message.creator("+9108821881", Collections.singletonList(emp.getContactNo()), PlivoConstants.smsMsg.getData() + "  "+
