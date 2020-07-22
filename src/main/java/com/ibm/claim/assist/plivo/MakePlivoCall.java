@@ -36,24 +36,24 @@ public class MakePlivoCall implements  CommandLineRunner{
 
     private void makeCall(){
         Plivo.init(propertyReader.getPlivoProperty().getAuthId(),propertyReader.getPlivoProperty().getAuthToken());
-        try {
+       /* try {
             Call.creator("+919108821881", Collections.singletonList("+491736375927"), "http://139.59.85.157:8080/getCallResponse?weekending=29")
                     .answerMethod("GET")
                     .create();
         } catch (IOException | PlivoRestException e) {
             e.printStackTrace();
-        }
-         /*   ReadAccountClaimData accountClaimData = new ReadAccountClaimData();
+        }*/
+          ReadAccountClaimData accountClaimData = new ReadAccountClaimData();
             ReadEmpContact rEmpContact = new ReadEmpContact();
-
         accountClaimData.getAccountClaims().forEach(accountClaim ->{
                  rEmpContact.getEmpContact().stream().
                          filter(empContact-> accountClaim.getEmpNo().equals(empContact.getEmpNo())).forEach(emp ->{
                      try {
-                     Call.creator("+9108821881", Collections.singletonList(emp.getContactNo()), "https://answer.url")
+                     Call.creator(propertyReader.getPlivoProperty().getCallerNo(), Collections.singletonList(emp.getContactNo()),
+                             propertyReader.getPlivoProperty().getAnswerUrl()+"?weekending="+accountClaim.getWeekEnding()
+                             )
                               .answerMethod("GET")
                              .create();
-
                      Message.creator("+9108821881", Collections.singletonList(emp.getContactNo()), PlivoConstants.smsMsg.getData() + "  "+
                              accountClaim.getWeekEnding()).create();
                  } catch (IOException | PlivoRestException e) {
@@ -61,7 +61,7 @@ public class MakePlivoCall implements  CommandLineRunner{
                     }
                  });
 
-            });*/
+            });
 
     }
     }

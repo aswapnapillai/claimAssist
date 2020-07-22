@@ -3,6 +3,8 @@ package com.ibm.claim.assist.plivo.config.model;
 public class PlivoProperty {
     String authId;
     String authToken;
+    String answerUrl;
+    String callerNo;
 
     public String getAuthToken() {
         return authToken;
@@ -23,11 +25,29 @@ public class PlivoProperty {
         this.authId = authId;
     }
 
+    public String getAnswerUrl() {
+        return answerUrl;
+    }
+
+    public void setAnswerUrl(String answerUrl) {
+        this.answerUrl = answerUrl;
+    }
+
+    public String getCallerNo() {
+        return callerNo;
+    }
+
+    public void setCallerNo(String callerNo) {
+        this.callerNo = callerNo;
+    }
+
     @Override
     public String toString() {
         return "PlivoProperty{" +
                 "authId='" + authId + '\'' +
                 ", authToken='" + authToken + '\'' +
+                ", answerUrl='" + answerUrl + '\'' +
+                ", callerNo='" + callerNo + '\'' +
                 '}';
     }
 }
