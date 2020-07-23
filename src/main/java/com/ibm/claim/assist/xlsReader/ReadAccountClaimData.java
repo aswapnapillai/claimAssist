@@ -1,5 +1,6 @@
 package com.ibm.claim.assist.xlsReader;
 
+import com.ibm.claim.assist.plivo.BeanUtil;
 import com.ibm.claim.assist.plivo.config.ClaimAssitProperty;
 import com.ibm.claim.assist.xlsReader.Model.AccountClaim;
 import com.ibm.claim.assist.xlsReader.Model.EmpContact;
@@ -8,6 +9,7 @@ import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,8 +17,7 @@ import java.util.List;
 
 public class ReadAccountClaimData extends ReadXls {
 
-    @Autowired
-    ClaimAssitProperty propertyReader;
+
     List<AccountClaim> accountClaimList = new ArrayList<>();
 
     public ReadAccountClaimData() {
@@ -35,10 +36,11 @@ public class ReadAccountClaimData extends ReadXls {
 
 
     private void createAccountClaimList() {
-        // Create a DataFormatter to format and get each cell's value as String
+
+        ClaimAssitProperty  propertyReader = BeanUtil.getBean(ClaimAssitProperty.class);
         DataFormatter dataFormatter = new DataFormatter();
         try {
-            Sheet sheet = readXls("C:\\ClaimReminder\\Testemp", 0);
+            Sheet sheet = readXls(propertyReader.getXlsFilesProperty().getAccountClaimsPath(), 0);
             for (Row row : sheet) {
                 AccountClaim accountClaim = new AccountClaim();
                 if (row.getRowNum() > 0) {

@@ -44,8 +44,7 @@ public abstract class ReadXls  implements IReadXls {
         File latestFile = null;
         Path parentFolder = Paths.get(pFilePath);
         Optional<File> latestFileFromFolder =
-                Arrays
-                        .stream(parentFolder.toFile().listFiles())
+                Arrays.stream(parentFolder.toFile().listFiles())
                         .max((f1, f2) -> Long.compare(f1.lastModified(),
                                         f2.lastModified()));
 

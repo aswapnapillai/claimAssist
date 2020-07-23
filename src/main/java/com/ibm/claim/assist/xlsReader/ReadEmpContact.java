@@ -1,5 +1,6 @@
 package com.ibm.claim.assist.xlsReader;
 
+import com.ibm.claim.assist.plivo.BeanUtil;
 import com.ibm.claim.assist.plivo.config.ClaimAssitProperty;
 import com.ibm.claim.assist.xlsReader.Model.AccountClaim;
 import com.ibm.claim.assist.xlsReader.Model.EmpContact;
@@ -14,8 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadEmpContact extends ReadXls  {
-    @Autowired
-    ClaimAssitProperty propertyReader;
+
     List<EmpContact> empContactList = new ArrayList<>();
     public ReadEmpContact(){
         CreateEmpContactList();
@@ -31,8 +31,9 @@ public class ReadEmpContact extends ReadXls  {
     }
 
     private void CreateEmpContactList() {
-        // Create a DataFormatter to format and get each cell's value as String
+        ClaimAssitProperty  propertyReader = BeanUtil.getBean(ClaimAssitProperty.class);
         DataFormatter dataFormatter = new DataFormatter();
+
         try {
             Sheet sheet = readXls(propertyReader.getXlsFilesProperty().getEmpContactPath(), 0);
             for (Row row : sheet) {
