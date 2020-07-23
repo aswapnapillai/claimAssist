@@ -36,7 +36,6 @@ public class ReadAccountClaimData extends ReadXls {
 
 
     private void createAccountClaimList() {
-
         ClaimAssitProperty  propertyReader = BeanUtil.getBean(ClaimAssitProperty.class);
         DataFormatter dataFormatter = new DataFormatter();
         try {
