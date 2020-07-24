@@ -2,9 +2,19 @@ package com.ibm.claim.assist.plivo.config.model;
 
 public class PlivoProperty {
     String authId;
+
+    public boolean getSendSms() {
+        return sendSms;
+    }
+
+    public void setSendSms(boolean sendSms) {
+        this.sendSms = sendSms;
+    }
+
     String authToken;
     String answerUrl;
     String callerNo;
+    boolean sendSms;
 
     public String getAuthToken() {
         return authToken;
@@ -48,6 +58,7 @@ public class PlivoProperty {
                 ", authToken='" + authToken + '\'' +
                 ", answerUrl='" + answerUrl + '\'' +
                 ", callerNo='" + callerNo + '\'' +
+                ", sendSms='" + sendSms + '\'' +
                 '}';
     }
 }

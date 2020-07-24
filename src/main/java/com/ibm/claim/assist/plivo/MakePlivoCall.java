@@ -31,7 +31,8 @@ public class MakePlivoCall implements  CommandLineRunner{
 
     public void run(String... args) throws Exception {
         System.out.println("SWARA   -> "+propertyReader);
-        makeCall();
+       PlivoCall plivocall= new PlivoCall();
+       plivocall.makeCall();
     }
 
     private void makeCall(){
@@ -43,13 +44,15 @@ public class MakePlivoCall implements  CommandLineRunner{
                  rEmpContact.getEmpContact().stream().
                          filter(empContact-> accountClaim.getEmpNo().equals(empContact.getEmpNo())).forEach(emp ->{
                      try {
-                     Call.creator(propertyReader.getPlivoProperty().getCallerNo(), Collections.singletonList(emp.getContactNo()),
+                        Call.creator(propertyReader.getPlivoProperty().getCallerNo(), Collections.singletonList(emp.getContactNo()),
                              propertyReader.getPlivoProperty().getAnswerUrl()+"?weekending="+accountClaim.getWeekEnding()
                              )
                               .answerMethod("GET")
                              .create();
-                     Message.creator(propertyReader.getPlivoProperty().getCallerNo(), Collections.singletonList(emp.getContactNo()), PlivoConstants.smsMsg.getData() + "  "+
-                             accountClaim.getWeekEnding()).create();
+                        if(propertyReader.getPlivoProperty().getSendSms()) {
+                            Message.creator(propertyReader.getPlivoProperty().getCallerNo(), Collections.singletonList(emp.getContactNo()), PlivoConstants.smsMsg.getData() + "  " +
+                                    accountClaim.getWeekEnding()).create();
+                        }
                  } catch (IOException | PlivoRestException e) {
                         e.printStackTrace();
                     }
